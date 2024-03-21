@@ -42,6 +42,7 @@
   position: relative;
   line-height: 1;
   top: -34px;
+  margin-left: 0px;
 }
 .Weather img {
   height: 64px;

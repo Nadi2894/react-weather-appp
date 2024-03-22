@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import "./Weather.css";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
@@ -20,19 +19,19 @@ export default function Weather(props) {
       icon: response.data.weather[0].icon,
     });
   }
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
 
   function search() {
     let apiKey = "b9ba0314a93083136d968577c718e31d";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    search();
-  }
-  function handleCity(event) {
-    setCity(event.target.value);
   }
 
   if (weatherData.loaded) {
@@ -46,7 +45,7 @@ export default function Weather(props) {
                 placeholder="Enter a city"
                 className="form-control"
                 autoFocus="on"
-                onChange={handleCity}
+                onChange={handleCityChange}
               />
             </div>
             <div className="col-3">
